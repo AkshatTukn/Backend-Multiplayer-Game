@@ -87,7 +87,7 @@ public class FriendService {
          addFriend.setUsername(user.getUsername());
          friends.add(addFriend);
          k++;
-         if(k>=10){break;}
+         if(k>=7){break;}
      }
         return friends;
 
