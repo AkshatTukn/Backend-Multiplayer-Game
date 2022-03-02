@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController
 {
-  
+    @Autowired
+  RoleRepository roleRepository;
+
   @GetMapping("/all")
   public String allAccess() {
     Role role = new Role();
@@ -19,15 +21,18 @@ public class TestController
     role.setName(ERole.ROLE_USER);
     roleRepository.save(role);
     Role role2 = new Role();
-    role.setId(2);
-    role.setName(ERole.ROLE_MODERATOR);
+    role2.setId(2);
+    role2.setName(ERole.ROLE_MODERATOR);
     roleRepository.save(role);
     Role role3 = new Role();
-    role.setId(3);
-    role.setName(ERole.ROLE_ADMIN);
+    role3.setId(3);
+    role3.setName(ERole.ROLE_ADMIN);
     roleRepository.save(role);
     return "Public Content.";
   }
+  
+  
+  
 
   @GetMapping("/user")
   @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
