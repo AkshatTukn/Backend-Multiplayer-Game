@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController
 {
-    @Autowired
+  @Autowired
   RoleRepository roleRepository;
 
   @GetMapping("/all")
@@ -23,11 +23,11 @@ public class TestController
     Role role2 = new Role();
     role2.setId(2);
     role2.setName(ERole.ROLE_MODERATOR);
-    roleRepository.save(role);
+    roleRepository.save(role2);
     Role role3 = new Role();
     role3.setId(3);
     role3.setName(ERole.ROLE_ADMIN);
-    roleRepository.save(role);
+    roleRepository.save(role3);
     return "Public Content.";
   }
   
