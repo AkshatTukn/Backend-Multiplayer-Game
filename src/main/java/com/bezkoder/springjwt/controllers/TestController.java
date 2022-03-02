@@ -11,8 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController
 {
-  @GetMapping("/all")
+ @GetMapping("/all")
   public String allAccess() {
+    Role role = new Role();
+    role.setId(1);
+    role.setName(ERole.valueOf("ROLE_USER"));
+    roleRepository.save(role);
+    Role role2 = new Role();
+    role.setId(2);
+    role.setName(ERole.valueOf("ROLE_MODERATOR"));
+    roleRepository.save(role);
+    Role role3 = new Role();
+    role.setId(3);
+    role.setName(ERole.valueOf("ROLE_ADMIN"));
+    roleRepository.save(role);
     return "Public Content.";
   }
 
