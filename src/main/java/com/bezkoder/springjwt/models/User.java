@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table( name= "users",
+@Table( name= "\"users\"",
         uniqueConstraints ={
         @UniqueConstraint(columnNames = "username"),
          @UniqueConstraint(columnNames = "email")
@@ -24,12 +24,12 @@ public class User {
 private String username;
 
 @NotBlank
-@Size(max=25)
+@Size(max=40)
 @Email
 private String email;
 
   @NotBlank
-  @Size(max = 120)
+  @Size(max = 120,min = 7)
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)

@@ -3,7 +3,7 @@ package com.bezkoder.springjwt.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "\"roles\"")
 public class Role
 {
   @Id

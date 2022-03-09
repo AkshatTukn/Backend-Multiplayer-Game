@@ -40,11 +40,11 @@ public class FriendService {
         User user2 = user;
         User firstuser = user1;
         User seconduser = user2;
-        if(user1.getId() > user2.getId())
+      /*  if(user1.getId() > user2.getId())
         {
             firstuser = user2;
             seconduser = user1;
-        }
+        }*/
         if( !(friendRepository.existsByFirstUserAndSecondUser(firstuser,seconduser)) )
         {
             friend.setCreatedDate(new Date());
@@ -53,6 +53,51 @@ public class FriendService {
             friendRepository.save(friend);
         }
     }
+    public void saveFriend1(UserDetailsImpl userDto1, User user) throws NullPointerException
+    {
+
+    //    User user = userRepository.getById(id);
+        //UserDetailsImpl userDto2 = modelMapper.map(user,UserDetailsImpl.class);
+        Friend friend = new Friend();
+        User user1 = userRepository.findByEmail(userDto1.getEmail());
+        User user2 = user;
+        User firstuser = user1;
+        User seconduser = user2;
+      /*  if(user1.getId() > user2.getId())
+        {
+            firstuser = user2;
+            seconduser = user1;
+        }*/
+        if( !(friendRepository.existsByFirstUserAndSecondUser(firstuser,seconduser)) )
+        {
+            friend.setCreatedDate(new Date());
+            friend.setFirstUser(firstuser);
+            friend.setSecondUser(seconduser);
+            friendRepository.save(friend);
+        }
+    }
+    public Boolean areFriend(UserDetailsImpl userDto1, User user) throws NullPointerException
+    {
+        User currentUser = userRepository.findByEmail(userDto1.getEmail());
+        Friend friend = new Friend();
+        User user1 = userRepository.findByEmail(userDto1.getEmail());
+        User user2 = user;
+        User firstuser = user2;
+        User seconduser = user1;
+      /*  if(user1.getId() > user2.getId())
+        {
+            firstuser = user2;
+            seconduser = user1;
+        }*/
+        if( !(friendRepository.existsByFirstUserAndSecondUser(firstuser,seconduser)) )
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+    }
+
     public List<AddFriend> getFriends()
     {
         UserDetailsImpl currentUserDto = securityService.getUser();
