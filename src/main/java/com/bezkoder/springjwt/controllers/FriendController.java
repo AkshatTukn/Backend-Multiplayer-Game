@@ -70,12 +70,7 @@ public class FriendController
         List<AddFriend> myFriends = friendService.getFriends();
         return new ResponseEntity<List<AddFriend>>(myFriends, HttpStatus.OK);
     }
-    @GetMapping("listFriends")
-    public ResponseEntity<List<AddFriend>> getFriends3()
-    {
-        List<AddFriend> myFriends = friendService.getFriends();
-        return new ResponseEntity<List<AddFriend>>(myFriends, HttpStatus.OK);
-    }
+
 
 
 }
