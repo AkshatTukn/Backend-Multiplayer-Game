@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static jdk.nashorn.internal.objects.NativeMath.min;
+import static java.lang.Math.min;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
