@@ -32,18 +32,7 @@ public class TestController
 
   @GetMapping("/all")
   public String allAccess() {
-    Role role = new Role();
-    role.setId(1);
-    role.setName(ERole.ROLE_USER);
-    roleRepository.save(role);
-    Role role2 = new Role();
-    role2.setId(2);
-    role2.setName(ERole.ROLE_MODERATOR);
-    roleRepository.save(role2);
-    Role role3 = new Role();
-    role3.setId(3);
-    role3.setName(ERole.ROLE_ADMIN);
-    roleRepository.save(role3);
+  
     return "Public Content.";
   }
   @GetMapping("/leaderboard")
