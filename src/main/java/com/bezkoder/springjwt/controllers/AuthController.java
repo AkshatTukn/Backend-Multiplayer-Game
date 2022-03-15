@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.bezkoder.springjwt.models.UserInfo;
+import com.bezkoder.springjwt.repository.UserinfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +37,8 @@ import com.bezkoder.springjwt.security.services.UserDetailsImpl;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthController
+{
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -44,6 +47,8 @@ public class AuthController {
 
   @Autowired
   RoleRepository roleRepository;
+  @Autowired
+  UserinfoRepository userinfoRepository;
 
   @Autowired
   PasswordEncoder encoder;
@@ -131,6 +136,8 @@ public class AuthController {
 
     user.setRoles(roles);
     userRepository.save(user);
+    UserInfo userInfo = new UserInfo(0L,0L,user.getUsername(),user.getId(), 0L,0L);
+    userinfoRepository.save(userInfo);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }

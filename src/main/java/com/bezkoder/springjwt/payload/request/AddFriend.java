@@ -9,7 +9,6 @@ public class AddFriend {
 
     public AddFriend() {
     }
-
     public String getUsername() {
         return username;
     }

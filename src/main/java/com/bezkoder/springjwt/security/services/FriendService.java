@@ -31,8 +31,8 @@ public class FriendService {
     @Autowired
     SecurityService securityService;
 
-    public void saveFriend(UserDetailsImpl userDto1, Long id) throws NullPointerException{
-
+    public void saveFriend(UserDetailsImpl userDto1, Long id) throws NullPointerException
+    {
         User user = userRepository.getById(id);
         //UserDetailsImpl userDto2 = modelMapper.map(user,UserDetailsImpl.class);
         Friend friend = new Friend();
@@ -84,11 +84,6 @@ public class FriendService {
         User user2 = user;
         User firstuser = user2;
         User seconduser = user1;
-      /*  if(user1.getId() > user2.getId())
-        {
-            firstuser = user2;
-            seconduser = user1;
-        }*/
         if( !(friendRepository.existsByFirstUserAndSecondUser(firstuser,seconduser)) )
         {
             return false;
@@ -97,7 +92,6 @@ public class FriendService {
             return true;
         }
     }
-
     public List<AddFriend> getFriends()
     {
         UserDetailsImpl currentUserDto = securityService.getUser();
@@ -111,13 +105,13 @@ public class FriendService {
             it is because of lexicographical order
             while calling get friends of user 2 we need to check as a both first user and the second user
          */
-        for (Friend friend : friendsByFirstUser)
+             for (Friend friend : friendsByFirstUser)
         {
             User user = userRepository.findById(friend.getSecondUser().getId())
                     .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username"));
             friendUsers.add(user);
         }
-      /*  for (Friend friend : friendsBySecondUser)
+   /*     for (Friend friend : friendsBySecondUser)
         {
             User user = userRepository.findById(friend.getFirstUser().getId())
                     .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username" ));
@@ -125,15 +119,18 @@ public class FriendService {
         }*/
         List<AddFriend> friends = new ArrayList<>();
         int k =0;
-     for( User user :friendUsers)
-     {
-         AddFriend addFriend = new AddFriend();
-         addFriend.setId(user.getId());
-         addFriend.setUsername(user.getUsername());
-         friends.add(addFriend);
-         k++;
-         if(k>=7){break;}
-     }
+
+
+
+        for( User user :friendUsers)
+        {
+          AddFriend addFriend = new AddFriend();
+          addFriend.setId(user.getId());
+          addFriend.setUsername(user.getUsername());
+          friends.add(addFriend);
+          k++;
+        // if(k>=7){break;}
+         }
         return friends;
 
        // return friendUsers;
